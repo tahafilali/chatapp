@@ -1,21 +1,21 @@
-import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
 
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
+import React, { Component } from 'react';
+import { StyleSheet, Text, View, StatusBar } from 'react-native';
+import Messages from './screens/Messages';
+import { NavigationContainer } from '@react-navigation/native';
+import ChatScreen from './screens/ChatScreen';
+import Main from './Main';
+import {MaterialCommunityIcons,AntDesign,MaterialIcons} from '@expo/vector-icons';
+import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
+
+
+export default class  App extends Component {
+  render(){
+    return (
+    <Main/>
+      );
+  }
+ 
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+

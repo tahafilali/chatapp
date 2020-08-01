@@ -1,0 +1,8 @@
+[0730/174222.397:ERROR:minidumpwritedump_with_crashpad_info.cc(435)] Failed to call MiniDumpWriteDump: Le fichier de pagination est insuffisant pour terminer cette opération. (0x800705AF)
+[0730/174222.398:ERROR:minidumpwritedump_with_crashpad_info.cc(592)] Failed to write minidump file
+[0730/174222.398:ERROR:crash_report_exception_handler.cc(132)] TryMiniDumpWriteDumpWithCrashpadInfo failed
+[0730/174222.403:ERROR:process_info.cc(359)] UncheckedAllocate
+[0730/213655.101:ERROR:minidumpwritedump_with_crashpad_info.cc(435)] Failed to call MiniDumpWriteDump: Un périphérique attaché au système ne fonctionne pas correctement. (0x8007001F)
+[0730/213655.102:ERROR:minidumpwritedump_with_crashpad_info.cc(592)] Failed to write minidump file
+[0730/213655.102:ERROR:crash_report_exception_handler.cc(132)] TryMiniDumpWriteDumpWithCrashpadInfo failed
+[0730/213655.105:ERROR:process_info.cc(359)] UncheckedAllocate
