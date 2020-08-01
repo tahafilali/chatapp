@@ -114,7 +114,8 @@ export default class ChatScreen extends Component {
 
   handleNewMessage = (text) => {
     if (this.state.channel) {
-      this.state.channel.sendMessage(text)
+      this.state.channel.sendMessage(text);
+      this.addMessage(text)
     }
   }
 
@@ -172,7 +173,7 @@ export default class ChatScreen extends Component {
             </View>
           </View>
           <View style={{ padding: 5 }}>
-            <AntDesign onPress={()=>this.addMessage(this.state.input)}  name="arrowright" size={25} color="#ECF1FF" style={{ backgroundColor: "#5574F7", borderRadius: 50, padding: 5 }} />
+            <AntDesign onPress={()=>this.handleNewMessage(this.state.input)}  name="arrowright" size={25} color="#ECF1FF" style={{ backgroundColor: "#5574F7", borderRadius: 50, padding: 5 }} />
           </View>
         </View>
       </View>
