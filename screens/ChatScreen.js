@@ -7,6 +7,7 @@ import { ScrollView } from 'react-native-gesture-handler';
 import axios from 'axios';
 import $ from 'jquery';
 
+const Chat = require('twilio-chat');
 const MesssageBubble = ({ isMine, message}) => {
   return (
     <View style={{ alignSelf: isMine ? "flex-end" : "flex-start" }}>
@@ -24,19 +25,29 @@ export default class ChatScreen extends Component {
       messages: [],
       username: '',
       channel: null,
+      token: {},
       input: ''
     }
   
   }
+  
   getToken = () => {
-    return fetch('https://twilioapi-123.herokuapp.com/token')
+    let promise = new Promise((resolve,reject)=>{
+      fetch('https://twilioapi-123.herokuapp.com/token')
       .then((response) => response.json())
-      .then((json) => {
-        this.setState({username : json.identity})
-      })
-      .catch((error) => {
-        console.error(error);
-      });
+      .then((token) => {
+        this.setState({token})
+        this.setState({username : token.identity})
+        resolve(token)
+    })})
+  return promise
+      
+     
+
+  
+     
+    
+  
     }
   addMessage = (message) => {
     
@@ -50,14 +61,13 @@ export default class ChatScreen extends Component {
   }
   componentDidMount = () => {
     this.getToken()
-    .then(this.createChatClient)
-    .then(this.joinGeneralChannel)
-    .then(this.configureChannelEvents)
+   .then(this.createChatClient)
     .catch((error) => {
-      
-        
+  this.toast("error")
+    }) 
+       
 
-    })
+    
   }
 
   toast = (message) => {
@@ -66,25 +76,32 @@ export default class ChatScreen extends Component {
  
 
   createChatClient = (token) => {
-    return new Promise((resolve, reject) => {
-      resolve(new TwilioChat(token.jwt))
+    
+    let promise1 = new Promise((resolve,reject)=>{
+      Chat.Client.create(token).then((client) =>{
+        client.getSubscribedChannels().then(()=>{
+          client.getChannelByUniqueName('general').then((channel)=>{
+            this.setState({channel})
+            channel.join().then(()=>{
+              this.toast("worked")
+              
+            }).catch(() => reject(Error('Could not join general channel.')))
+            resolve(channel)
+          }).catch(() => reject(Error('Could not join general channel.')))
+        }).catch(() => reject(Error('Could not join general channel.')))
+      })
+      
     })
+    return promise1
+    
   }
 
-  joinGeneralChannel = (chatClient) => {
-    return new Promise((resolve, reject) => {
-      chatClient.getSubscribedChannels().then(() => {
-        chatClient.getChannelByUniqueName('general').then((channel) => {
-          this.setState({ channel })
-
-          channel.join().then(() => {
-            window.addEventListener('beforeunload', () => channel.leave())
-          }).catch(() => reject(Error('Could not join general channel.')))
-
-          resolve(channel)
-        }).catch(() => reject(Error("Could not find general channel.")))
-      }).catch(() => reject(Error('Could not get channel list.')))
+  joinGeneralChannel = () => {
+    
+    let promise2 = new Promise((resolve, reject)=>{
+      resolve("test")
     })
+    return promise2
   }
 
   createGeneralChannel = (chatClient) => {

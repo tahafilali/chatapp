@@ -13,6 +13,8 @@
     "@react-navigation/material-bottom-tabs": "^5.2.14",
     "@react-navigation/native": "^5.7.1",
     "axios": "^0.19.2",
+    "babel-runtime": "^6.26.0",
+    "events": "^3.2.0",
     "expo": "~38.0.8",
     "expo-status-bar": "^1.0.2",
     "jquery": "^3.5.1",
@@ -24,6 +26,7 @@
     "react-native-reanimated": "^1.10.1",
     "react-native-safe-area-context": "^3.1.1",
     "react-native-screens": "^2.9.0",
+    "react-native-twilio-chat": "^0.3.1",
     "react-native-web": "~0.11.7",
     "twilio-chat": "^4.0.0"
   },
